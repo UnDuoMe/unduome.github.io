@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en">
+  <head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-dZu710qV7pUozk9WNNw7Nr449YAqE6wv/arVKnsnH/Y=' 'sha256-CLFFPvhFBh0kFlnbQrEeqNVcxuv2A3Us6xho0TeHp3o='; script-src-attr 'none'; style-src-elem https://cdn.jsdelivr.net/npm/uikit@3.25.29/dist/css/uikit.min.css https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/home-styles.UBxstx7D.css; style-src-attr 'none'; img-src data: blob:; font-src data:; connect-src https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-chatgpt.OF1MfEww.webp https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-claude.ll_cCOfy.webp https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-gemini.MmEZ45nQ.webp; form-action https://*.duosecurity.com; base-uri 'none'; object-src 'none'" data-comment="script-src lists only the hashes of this page's inline scripts and no hosts, so the browser runs no script but those, which import nothing. No source allows inline handlers or eval. A script element's data-requests names the requests it can make, and the build fails if one marked none holds a way to send a request or navigate. Fetches may reach only the files in connect-src, and forms only Duo. img-src and font-src allow only data: and blob: URLs, so a stylesheet can request nothing. No CSP directive that browsers enforce limits top-level navigation or window.open, so only this page's own scripts can use them.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description" content="Use your favorite authenticator with Duo. Activation goes directly to Duo; your key stays in your browser. No install or account.">
+    <title>UnDuo — A secure way to use any 2FA app for your school login</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2096%2096'%3E%3Crect%20width='96'%20height='96'%20fill='white'/%3E%3Cpath%20transform='translate(9%2029)'%20d='M0%200H18V37.97A19%2019%200%200%201%200%2019ZM20%200H38V38H20Z'/%3E%3Cpath%20fill='darkgray'%20transform='translate(49%2029)%20rotate(180%2019%2019)'%20d='M0%200H18V37.97A19%2019%200%200%201%200%2019ZM20%200H38V38H20Z'/%3E%3C/svg%3E">
+    <!-- CDN stylesheet URL and SRI hash: update with vp run update:cdn. The page loads no scripts from a CDN. -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.25.29/dist/css/uikit.min.css"
+      integrity="sha256-u7rK4EvrYUNLlBrA/s9SFru2CdHqGY8S2bizol9fSw4="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      data-vendor="uikit"
+      data-integrity-source="https://data.jsdelivr.com/v1/packages/npm/uikit@3.25.29?structure=flat"
+      data-integrity-file="/dist/css/uikit.min.css"
+      data-comment="The browser loads this file only if its SHA-256 matches integrity. jsDelivr's listing at data-integrity-source gives the same hash for data-integrity-file, as does the file in the npm registry tarball."
+    />
+    <link rel="stylesheet" data-vendor="app" href="https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/home-styles.UBxstx7D.css" integrity="sha256-UBxstx7DS0PTN3XVNpsO4KYnCHiJFvZoHs1kZMydk+E=" crossorigin="anonymous" referrerpolicy="no-referrer" data-integrity-source="https://data.jsdelivr.com/v1/packages/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82?structure=flat" data-integrity-file="/home-styles.UBxstx7D.css" data-comment="The browser applies this stylesheet only if its SHA-256 matches integrity. jsDelivr's listing at data-integrity-source, a commit of github.com/UnDuoMe/unduo.me, gives the same hash for data-integrity-file.">
+  </head>
+  <body class="page-body">
+    <div id="root"><template id="ai-reply-images">
+    <img class="reply-shot" data-reply="chatgpt" data-image-src="https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-chatgpt.OF1MfEww.webp" data-image-integrity="sha256-OF1MfEwwjzWIHSim6wU0K5lN+juMgpquMgYcLx781lk=" alt="ChatGPT (Pro) with UnDuo - Other.html and the prompt, then its reply">
+    <img class="reply-shot" data-reply="claude" data-image-src="https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-claude.ll_cCOfy.webp" data-image-integrity="sha256-ll/cCOfyqrkifQ4l1+SydGC9Ee/QKxmXHo6LOlDAXQA=" alt="Claude (Fable 5.1) with UnDuo - Other.html and the prompt, then its reply">
+    <img class="reply-shot" data-reply="gemini" data-image-src="https://cdn.jsdelivr.net/gh/UnDuoMe/unduo.me@b6b6e2fe8599d7e7dc9a713e8fab72bbc246db82/ai-reply-gemini.MmEZ45nQ.webp" data-image-integrity="sha256-MmEZ45nQUkbWMMlyZ7VNiYNQ/NCRp8GnnZAbh5oHUtU=" alt="Gemini (3.1 Pro) with UnDuo - Other.html and the prompt, then its reply">
+  </template></div>
+    <noscript>Enable JavaScript to use unduo.</noscript>
+    <script data-app="unduo" data-part="vanjs" data-upstream="https://raw.githubusercontent.com/vanjs-org/van/84f30ae917107c9d4b4c38b9969a0d56aaac5ac8/public/van-1.6.2.nomodule.js" data-upstream-sha256="759bbbd74a95ee9528ce4f5634dc3b36be38f5802a13ac2ffdaad52a7b271ff6" data-requests="none" data-comment="VanJS 1.6.2: the file at data-upstream, byte for byte, whose SHA-256 is data-upstream-sha256. It sets window.van and nothing else.">(() => {
+  // van.js
+  var protoOf = Object.getPrototypeOf;
+  var changedStates;
+  var derivedStates;
+  var curDeps;
+  var curNewDerives;
+  var alwaysConnectedDom = { isConnected: 1 };
+  var gcCycleInMs = 1e3;
+  var statesToGc;
+  var propSetterCache = {};
+  var objProto = protoOf(alwaysConnectedDom);
+  var funcProto = protoOf(protoOf);
+  var _undefined;
+  var addAndScheduleOnFirst = (set, s, f, waitMs) => (set ?? (waitMs ? setTimeout(f, waitMs) : queueMicrotask(f), /* @__PURE__ */ new Set())).add(s);
+  var runAndCaptureDeps = (f, deps, arg) => {
+    let prevDeps = curDeps;
+    curDeps = deps;
+    try {
+      return f(arg);
+    } catch (e) {
+      console.error(e);
+      return arg;
+    } finally {
+      curDeps = prevDeps;
+    }
+  };
+  var keepConnected = (l) => l.filter((b) => b._dom?.isConnected);
+  var addStatesToGc = (d) => statesToGc = addAndScheduleOnFirst(statesToGc, d, () => {
+    for (let s of statesToGc)
+      s._bindings = keepConnected(s._bindings), s._listeners = keepConnected(s._listeners);
+    statesToGc = _undefined;
+  }, gcCycleInMs);
+  var stateProto = {
+    get val() {
+      curDeps?._getters?.add(this);
+      return this.rawVal;
+    },
+    get oldVal() {
+      curDeps?._getters?.add(this);
+      return this._oldVal;
+    },
+    set val(v) {
+      curDeps?._setters?.add(this);
+      if (v !== this.rawVal) {
+        this.rawVal = v;
+        this._bindings.length + this._listeners.length ? (derivedStates?.add(this), changedStates = addAndScheduleOnFirst(changedStates, this, updateDoms)) : this._oldVal = v;
+      }
+    }
+  };
+  var state = (initVal) => ({
+    __proto__: stateProto,
+    rawVal: initVal,
+    _oldVal: initVal,
+    _bindings: [],
+    _listeners: []
+  });
+  var bind = (f, dom) => {
+    let deps = { _getters: /* @__PURE__ */ new Set(), _setters: /* @__PURE__ */ new Set() }, binding = { f }, prevNewDerives = curNewDerives;
+    curNewDerives = [];
+    let newDom = runAndCaptureDeps(f, deps, dom);
+    newDom = (newDom ?? document).nodeType ? newDom : new Text(newDom);
+    for (let d of deps._getters)
+      deps._setters.has(d) || (addStatesToGc(d), d._bindings.push(binding));
+    for (let l of curNewDerives) l._dom = newDom;
+    curNewDerives = prevNewDerives;
+    return binding._dom = newDom;
+  };
+  var derive = (f, s = state(), dom) => {
+    let deps = { _getters: /* @__PURE__ */ new Set(), _setters: /* @__PURE__ */ new Set() }, listener = { f, s };
+    listener._dom = dom ?? curNewDerives?.push(listener) ?? alwaysConnectedDom;
+    s.val = runAndCaptureDeps(f, deps, s.rawVal);
+    for (let d of deps._getters)
+      deps._setters.has(d) || (addStatesToGc(d), d._listeners.push(listener));
+    return s;
+  };
+  var add = (dom, ...children) => {
+    for (let c of children.flat(Infinity)) {
+      let protoOfC = protoOf(c ?? 0);
+      let child = protoOfC === stateProto ? bind(() => c.val) : protoOfC === funcProto ? bind(c) : c;
+      child != _undefined && dom.append(child);
+    }
+    return dom;
+  };
+  var tag = (ns, name, ...args) => {
+    let [{ is, ...props }, ...children] = protoOf(args[0] ?? 0) === objProto ? args : [{}, ...args];
+    let dom = ns ? document.createElementNS(ns, name, { is }) : document.createElement(name, { is });
+    for (let [k, v] of Object.entries(props)) {
+      let getPropDescriptor = (proto) => proto && (Object.getOwnPropertyDescriptor(proto, k) ?? getPropDescriptor(protoOf(proto)));
+      let propSetter = !ns && !is && !name.includes("-") ? propSetterCache[name + "," + k] ??= getPropDescriptor(protoOf(dom))?.set ?? 0 : getPropDescriptor(protoOf(dom))?.set;
+      let isEvent = k.startsWith("on");
+      let setter = isEvent ? (v2, oldV) => {
+        let event = k.slice(2);
+        dom.removeEventListener(event, oldV);
+        dom.addEventListener(event, v2);
+      } : propSetter ? propSetter.bind(dom) : dom.setAttribute.bind(dom, k);
+      let protoOfV = protoOf(v ?? 0);
+      isEvent || protoOfV === funcProto && (v = derive(v, _undefined, dom), protoOfV = stateProto);
+      protoOfV === stateProto ? bind(() => (setter(v.val, v._oldVal), dom)) : setter(v);
+    }
+    return add(dom, children);
+  };
+  var handler = (ns) => ({ get: (_, name) => tag.bind(_undefined, ns, name) });
+  var update = (dom, newDom) => newDom ? newDom !== dom && dom.replaceWith(newDom) : dom.remove();
+  var updateDoms = () => {
+    let iterationsLeft = 100, derivedStatesArray = [...changedStates].filter((s) => s.rawVal !== s._oldVal);
+    do {
+      derivedStates = /* @__PURE__ */ new Set();
+      for (let l of new Set(derivedStatesArray.flatMap((s) => s._listeners = keepConnected(s._listeners))))
+        derive(l.f, l.s, l._dom), l._dom = _undefined;
+    } while (--iterationsLeft && (derivedStatesArray = [...derivedStates]).length);
+    let changedStatesArray = [...changedStates].filter((s) => s.rawVal !== s._oldVal);
+    changedStates = _undefined;
+    for (let b of new Set(changedStatesArray.flatMap((s) => s._bindings = keepConnected(s._bindings))))
+      update(b._dom, bind(b.f, b._dom)), b._dom = _undefined;
+    for (let s of changedStatesArray) s._oldVal = s.rawVal;
+  };
+  var van_default = {
+    tags: new Proxy((ns) => new Proxy(tag, handler(ns)), handler()),
+    hydrate: (dom, f) => update(dom, bind(f, dom)),
+    add,
+    state,
+    derive
+  };
+
+  // van.forbundle.js
+  window.van = van_default;
+})();
+</script>
+<script type="module" data-app="unduo" data-comment="This and the vanjs element before it are all the JavaScript the page runs. This one is bundled from github.com/UnDuoMe/unduo.me without minifying. It imports nothing. With VanJS, which builds the page's elements with createElement and text nodes, it filters the list of institutions as you type and takes the one you choose through downloading its setup file, asking an AI about it and opening it. Its only requests are fetch() of the screenshots of what ChatGPT, Claude and Gemini said about a setup file (showScreenshot): each image's data-image-src in the #ai-reply-images template, which returns a file only if its SHA-256 matches, shown as a blob: URL. It changes the URL only with history.pushState(), which records the institution and step you chose in this page's own address. It opens a window only with window.open() of the AI link you click (openWindow), and only links you click go anywhere else. When you ask, it copies a prompt for an AI to your clipboard.">var universities = [
+	{
+		"id": "IAU-020599",
+		"name": "University of Toronto",
+		"country": "Canada",
+		"aliases": [
+			"University of Toronto",
+			"utoronto.ca",
+			"toronto.edu",
+			"utoronto",
+			"U of T",
+			"UofT",
+			"UTORMFA",
+			"U Toronto"
+		],
+		"sourceUrl": "https://security.utoronto.ca/wp-content/uploads/2024/07/UTORMFA-Info-Sessions-Presentation.pdf",
+		"sourceKind": "university",
+		"checkedAt": "2026-10-31",
+		"portalUrl": "https://enroll.utormfa.utoronto.ca/",
+		"stateProvince": "Ontario"
+	},
+	{
+		"id": "IAU-020623",
+		"name": "University of Waterloo",
+		"country": "Canada",
+		"aliases": [
+			"University of Waterloo",
+			"uwaterloo.ca",
+			"uwaterloo",
+			"Waterloo",
+			"UW",
+			"UWaterloo"
+		],
+		"sourceUrl": "https://uwaterloo.ca/mechanical-mechatronics-engineering-information-technology/two-factor-authentication-2fa#enroll",
+		"sourceKind": "university",
+		"checkedAt": "2026-11-07",
+		"portalUrl": "https://uwaterloo.login.duosecurity.com/devices",
+		"duoPrompt": "universal",
+		"stateProvince": "Ontario"
+	},
+	{
+		"id": "IAU-020629",
+		"name": "University of Western Ontario",
+		"country": "Canada",
+		"aliases": [
+			"University of Western Ontario",
+			"uwo.ca",
+			"western",
+			"Western University",
+			"Western",
+			"UWO",
+			"Western Ontario"
+		],
+		"sourceUrl": "https://mfa.uwo.ca/manage_your_devices/add_a_new_authentication_device.html",
+		"sourceKind": "university",
+		"checkedAt": "2026-11-07",
+		"portalUrl": "https://identity.uwo.ca/",
+		"note": "After you sign in, open the Security tab, choose Manage My MFA, then Launch Duo Manager.",
+		"whedIds": ["IAU-020629"],
+		"stateProvince": "Ontario"
+	}
+];
+/**
+* The HTML elements the pages build, each a function of its properties and
+* children. A function or `State` as a value keeps that property or child up
+* to date. Text becomes text nodes, so nothing here writes HTML.
+*/
+var { a, aside, button, code, details, dialog, div, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, header, iframe, img, input, kbd, label, legend, li, main, nav, ol, option, p, pre, section, select, span, strong, summary, textarea, ul } = van.tags;
+/**
+* The SVG elements, for icons and the home page's illustrations, which need
+* their namespace. `svgText` is SVG's `text`.
+*/
+var { g, path, rect, svg, text: svgText } = van.tags("http://www.w3.org/2000/svg");
+function normalize(value) {
+	return value.normalize("NFKD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}.]+/gu, " ").trim();
+}
+function searchable(university) {
+	const name = normalize(university.name);
+	const aliases = [name, ...university.aliases.map(normalize)];
+	const text = normalize([
+		university.id,
+		university.name,
+		university.country,
+		university.stateProvince ?? "",
+		...university.aliases
+	].join(" "));
+	return {
+		university,
+		name,
+		aliases,
+		text,
+		words: new Set(text.split(/\s+/))
+	};
+}
+var entries = universities.map(searchable);
+new Map(entries.map((entry) => [entry.university, entry]));
+var byId = new Map(entries.map((entry) => [normalize(entry.university.id), entry.university]));
+var byAlias = new Map();
+for (const entry of entries) for (const alias of new Set(entry.aliases)) byAlias.set(alias, byAlias.has(alias) ? void 0 : entry.university);
+function matches(entry, tokens) {
+	return tokens.every((token) => token.length <= 2 ? entry.words.has(token) : entry.text.includes(token));
+}
+/**
+* The choice for a school or company the list doesn't have. Its file names no
+* institution and links to no portal, so it suits any organization that uses
+* Duo. `findUniversity("other")` returns it; searches never do.
+*/
+var otherInstitution = {
+	id: "other",
+	name: "Other",
+	country: "",
+	aliases: [],
+	sourceUrl: "",
+	sourceKind: "directory"
+};
+/** Resolve exact identifiers only. Ambiguous aliases never preselect a school. */
+function findUniversity(value) {
+	if (!value || value.length > 160) return void 0;
+	const query = normalize(value);
+	if (query === otherInstitution.id) return otherInstitution;
+	return query ? byId.get(query) ?? byAlias.get(query) : void 0;
+}
+/** Return a bounded menu, ranking exact names/domains before broad text matches. */
+function searchUniversities(value, limit = 50) {
+	const maximum = Math.min(100, Math.max(0, Math.floor(limit)));
+	if (!maximum || value.length > 160) return [];
+	const query = normalize(value);
+	const tokens = query.split(/\s+/).filter(Boolean);
+	const exact = findUniversity(value);
+	return entries.filter((entry) => matches(entry, tokens)).map((entry) => ({
+		university: entry.university,
+		rank: entry.university === exact ? 0 : !query ? entry.university.portalUrl ? 1 : 2 : entry.aliases.includes(query) ? 1 : entry.name.startsWith(query) ? 2 : entry.name.includes(query) ? 3 : 4
+	})).sort((a, b) => a.rank - b.rank).slice(0, maximum).map((entry) => entry.university);
+}
+var optionId = (index) => `university-option-${index}`;
+var place = (school) => school === otherInstitution ? "Any other school or company" : [school.stateProvince, school.country].filter(Boolean).join(", ") + (school.portalUrl ? " · Portal link available" : "");
+/**
+* A searchable dropdown of the published institutions. Typing in the field
+* filters the list under it, the arrow keys move through the list, and Enter
+* or a click chooses one. Escape, Tab or a click elsewhere closes it. Other,
+* whose file names no institution, is always last.
+*/
+function universityPicker(choose) {
+	const query = van.state("");
+	const open = van.state(false);
+	const active = van.state(0);
+	const matches = van.derive(() => searchUniversities(query.val));
+	const choices = van.derive(() => [...matches.val, otherInstitution]);
+	const count = universities.length.toLocaleString("en-US");
+	const pick = (school) => {
+		if (!school) return;
+		open.val = false;
+		query.val = "";
+		choose(school);
+	};
+	/** Move the highlight by `step`, wrapping around, and keep it in view. */
+	const move = (step) => {
+		const length = choices.val.length;
+		if (!length) return;
+		active.val = (active.val + step + length) % length;
+		setTimeout(() => document.getElementById(optionId(active.val))?.scrollIntoView({ block: "nearest" }));
+	};
+	const field = input({
+		id: "university",
+		class: "picker-input",
+		type: "text",
+		role: "combobox",
+		placeholder: "Search for your university...",
+		autocomplete: "off",
+		spellcheck: false,
+		"aria-autocomplete": "list",
+		"aria-expanded": () => String(open.val),
+		"aria-controls": "university-choices",
+		"aria-describedby": "university-description",
+		"aria-activedescendant": () => open.val && choices.val.length > 0 ? optionId(active.val) : "",
+		value: query,
+		oninput: (event) => {
+			query.val = event.target.value;
+			active.val = 0;
+			open.val = true;
+		},
+		onclick: () => {
+			open.val = true;
+		},
+		onkeydown: (event) => {
+			if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+				event.preventDefault();
+				if (open.val) move(event.key === "ArrowDown" ? 1 : -1);
+				else {
+					active.val = event.key === "ArrowDown" ? 0 : Math.max(0, choices.val.length - 1);
+					open.val = true;
+				}
+			} else if (event.key === "Enter" && open.val) {
+				event.preventDefault();
+				pick(choices.val[active.val]);
+			} else if (event.key === "Escape") {
+				if (open.val) open.val = false;
+				else query.val = "";
+			} else if (event.key === "Tab") open.val = false;
+		}
+	});
+	const picker = div({
+		id: "university-picker",
+		class: "picker",
+		"data-open": () => String(open.val),
+		onfocusout: (event) => {
+			if (!picker.contains(event.relatedTarget)) open.val = false;
+		}
+	}, label({
+		for: "university",
+		class: "sr-only"
+	}, "Select Your University"), div({
+		class: "picker-field",
+		onmousedown: (event) => {
+			if (event.target === field) return;
+			event.preventDefault();
+			field.focus();
+			open.val = !open.val;
+		}
+	}, svg({
+		class: "picker-icon",
+		viewBox: "0 0 20 20",
+		"aria-hidden": "true"
+	}, path({
+		d: "M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM16.5 16.5l-3.6-3.6",
+		fill: "none",
+		stroke: "currentColor",
+		"stroke-width": "1.6",
+		"stroke-linecap": "round"
+	})), field, svg({
+		class: "picker-chevron",
+		viewBox: "0 0 20 20",
+		"aria-hidden": "true"
+	}, path({
+		d: "M5.5 8l4.5 4.5L14.5 8",
+		fill: "none",
+		stroke: "currentColor",
+		"stroke-width": "1.6",
+		"stroke-linecap": "round",
+		"stroke-linejoin": "round"
+	}))), div({
+		id: "university-dropdown",
+		class: "picker-panel",
+		hidden: () => !open.val
+	}, p({
+		class: "picker-empty",
+		role: "status",
+		hidden: () => matches.val.length > 0
+	}, "No matching university. Try another name or acronym, or choose Other."), () => ul({
+		id: "university-choices",
+		class: "picker-list",
+		role: "listbox",
+		"aria-label": "Universities"
+	}, choices.val.map((school, index) => li({
+		id: optionId(index),
+		class: "picker-option",
+		role: "option",
+		"aria-selected": () => String(open.val && index === active.val),
+		onmousedown: (event) => event.preventDefault(),
+		onmousemove: () => {
+			if (active.val !== index) active.val = index;
+		},
+		onclick: () => pick(school)
+	}, span({ class: "picker-name" }, school.name), span({ class: "picker-place" }, place(school))))), p({
+		id: "university-description",
+		class: "picker-hint"
+	}, `${count}${count === "1" ? " institution. " : " institutions. "}Directory inclusion does not confirm Duo use.`)));
+	return picker;
+}
+/** How UnDuo works, in the three steps the user wrote. */
+var steps$1 = [
+	"Get a new QR code from Duo.",
+	"UnDuo converts it to a 2FA QR Code.",
+	"Scan this 2FA QR Code with your favorite 2FA app."
+];
+/** The page's name, what it's for, and that it's built to be secure. */
+function homeHeader() {
+	return header({ class: "home-header" }, h1({ class: "home-title" }, "UnDuo"), p({ class: "home-tagline" }, "A ", strong("secure"), " way to use ", em("any"), " 2FA app for your school login."), p({ class: "home-subtext" }, "UnDuo is a secure, single file that you can audit and use locally."));
+}
+/** Where a student starts: a card holding the line that says so and the search for their university. */
+function homeStart(picker) {
+	return div({ class: "home-start" }, p({ class: "home-start-text" }, "Select your university below to get started:"), picker);
+}
+/** The page's footer: an email link to contact UnDuo, and a link to the source on GitHub. */
+function homeFooter() {
+	return footer({ class: "home-footer" }, a({
+		class: "home-contact",
+		href: "mailto:contact@unduo.me"
+	}, svg({
+		class: "home-footer-icon",
+		viewBox: "0 0 16 16",
+		"aria-hidden": "true"
+	}, path({
+		d: "M2.5 3.5h11a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1ZM2 4.5l6 4.5 6-4.5",
+		fill: "none",
+		stroke: "currentColor",
+		"stroke-width": "1.4",
+		"stroke-linejoin": "round"
+	})), "contact@unduo.me"), a({
+		class: "home-source",
+		href: "https://github.com/UnDuoMe/unduo.me",
+		target: "_blank",
+		rel: "noreferrer",
+		"aria-label": "Source on GitHub",
+		title: "Source on GitHub"
+	}, svg({
+		class: "home-footer-icon",
+		viewBox: "0 0 16 16",
+		"aria-hidden": "true"
+	}, path({
+		fill: "currentColor",
+		d: "M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"
+	})), "GitHub"));
+}
+/**
+* What ChatGPT, Claude and Gemini answered when given the setup file, saved as
+* `UnDuo - Other.html` so it names no school, and `aiPrompt`, each in a temporary chat with its strongest model.
+* `vp run capture:ai` asks them, saves the screenshots and records each
+* reply in `configs/ai-replies/results.json`. Copy a reply here whenever its
+* screenshot changes.
+*/
+var aiReplies = [
+	{
+		id: "chatgpt",
+		name: "ChatGPT",
+		model: "Pro",
+		verdict: "yes",
+		reply: "Safe: yes. The file restricts activation to your Duo server and generates your authenticator QR code locally. Its downloaded setup program cannot contact servers directly, and the page checks its outputs before using them. Styles and images are also restricted; I found no code-controlled route for them to upload either secret.\n\nI couldn’t retrieve every external file, so this verdict rests on the restrictions this HTML enforces—not a claim that I inspected every downloaded byte."
+	},
+	{
+		id: "claude",
+		name: "Claude",
+		model: "Fable 5.1",
+		verdict: "yes",
+		reply: "Safe: yes\n\nReading the file and the files it fetches, the only place your activation code can go is Duo itself, and the only places your key can go are this page's screen and the QR code or link you hand to your authenticator app.\n\nHere is why, in plain terms:\n\n- **The page locks its own doors.** A security policy at the top tells the browser: run only the scripts written in this file, send forms only to Duo (*.duosecurity.com), download only from one frozen folder on jsDelivr, and load no outside images or fonts. The browser enforces this, so even a bug in the page's code could not send data somewhere else.\n- **The Duo request is built by the page, not by anything downloaded.** The script checks that the address is a Duo api-…duosecurity.com host, that the code in it actually came from the QR code you pasted, and that the host never changes during a session. The fields it sends are fixed: a fresh public key and the device details Duo Mobile sends.\n- **Duo's reply stays in a sealed box.** It appears in a locked frame the page cannot read; you copy it across yourself. The page never puts the code or key in its web address, in browser storage, or on the clipboard (its only copy button copies the portal link).\n- **The downloaded \"brain\" is caged.** The setup logic (a WebAssembly module from jsDelivr) is only loaded if its fingerprint matches, is given no network or browser access at all, and every answer it returns is checked against strict rules before the page uses it. It can pick which step or message to show, but it cannot invent a new destination, show a different key, or leak text that didn't come from what you pasted. I judged it by that cage rather than reading its bytes, which is the point: it holds whatever the module contains.\n- **The stylesheets and screenshots are inert.** I fetched unduo's stylesheet and screenshot list: the stylesheet contains no outside links or imports, and the list holds only plain file names and fingerprints. The UIkit stylesheet is the published package pinned by fingerprint, and the policy would block any outside request from a stylesheet anyway.\n\nWhat this does not cover, because the file cannot control it: your clipboard and browser (if they sync, Duo's reply passes through them), your authenticator app's own storage, and Duo's servers, which necessarily receive the activation code. Use a private window and clear the clipboard afterward, as the page itself suggests."
+	},
+	{
+		id: "gemini",
+		name: "Gemini",
+		model: "3.1 Pro",
+		verdict: "yes",
+		reply: "Safe: yes\n\nThe UnDuo file processes your setup entirely locally inside your web browser and uses a strict built-in firewall known as a Content Security Policy. This policy explicitly blocks the page from sending your information anywhere except directly to Duo's official servers (*.duosecurity.com). Furthermore, the few visual and processing files it downloads to function are locked by exact cryptographic fingerprints, meaning it is mathematically prevented from loading altered code, trackers, or hidden connections that could steal your keys."
+	}
+];
+var ink = "#182230";
+var muted = "#526174";
+var line = "#cbd5e1";
+var faint = "#e2e8f0";
+var pale = "#f1f5f9";
+var gray = "#94a3b8";
+var accent = "#1e67cf";
+var soft = "#e7f0ff";
+var shadow = "#1e3a8a";
+var white = "#fff";
+/** A rounded rectangle, the shape every illustration is drawn with. */
+function box(x, y, width, height, radius, fill, extra = {}) {
+	return rect({
+		x,
+		y,
+		width,
+		height,
+		rx: radius,
+		fill,
+		...extra
+	});
+}
+/**
+* A drawing of a QR code: three finder squares and seeded noise, 21 modules a
+* side. It encodes nothing, so a phone pointed at it finds nothing to open.
+*/
+function qrDrawing(seed, x, y, size, color) {
+	const modules = 21;
+	let state = seed;
+	const random = () => (state = state * 48271 % 2147483647) / 2147483647;
+	const finders = [
+		[0, 0],
+		[14, 0],
+		[0, 14]
+	];
+	let d = "";
+	for (let row = 0; row < modules; row++) for (let column = 0; column < modules; column++) {
+		const finder = finders.find(([left, top]) => column >= left - 1 && column <= left + 7 && row >= top - 1 && row <= top + 7);
+		const ring = finder && Math.max(Math.abs(column - finder[0] - 3), Math.abs(row - finder[1] - 3));
+		if (finder ? ring === 3 || ring <= 1 : random() < .5) d += `M${column} ${row}h1v1h-1z`;
+	}
+	return svg({
+		x,
+		y,
+		width: size,
+		height: size,
+		viewBox: `0 0 ${modules} ${modules}`
+	}, path({
+		d,
+		fill: color,
+		"shape-rendering": "crispEdges"
+	}));
+}
+/** An illustration's canvas: decorative, since the text beside it says the same. */
+function canvas(...children) {
+	return svg({
+		class: "how-art",
+		viewBox: "0 0 480 360",
+		"aria-hidden": "true"
+	}, children);
+}
+/** Step 1: a window of the school's Duo portal, showing the QR code it makes for Duo Mobile. */
+function portalArt() {
+	return div({ class: "how-visual how-visual-portal" }, canvas(box(56, 60, 368, 264, 20, shadow, { opacity: "0.08" }), box(56, 48, 368, 264, 20, white), box(78, 66, 10, 10, 5, "#f87171"), box(96, 66, 10, 10, 5, "#fbbf24"), box(114, 66, 10, 10, 5, "#34d399"), box(56, 92, 368, 1, 0, faint), box(84, 124, 128, 14, 7, ink), box(84, 154, 140, 8, 4, line), box(84, 170, 118, 8, 4, line), box(84, 186, 132, 8, 4, line), box(84, 222, 104, 32, 10, "#6db33f"), box(102, 234, 68, 8, 4, white), box(246, 114, 150, 150, 14, white, {
+		stroke: faint,
+		"stroke-width": "2"
+	}), qrDrawing(17, 258, 126, 126, ink)));
+}
+/** Step 2: Duo's QR code becomes a standard 2FA QR code. */
+function convertArt() {
+	const card = (x, seed, color, label) => [
+		box(x, 94, 164, 196, 18, shadow, { opacity: "0.08" }),
+		box(x, 82, 164, 196, 18, white),
+		qrDrawing(seed, x + 20, 102, 124, color),
+		svgText({
+			x: x + 82,
+			y: 256,
+			"text-anchor": "middle",
+			"font-size": "14",
+			"font-weight": "600",
+			fill: muted
+		}, label)
+	];
+	return div({ class: "how-visual how-visual-convert" }, canvas(card(32, 29, ink, "Duo QR code"), card(284, 61, accent, "2FA QR code"), box(212, 152, 56, 56, 28, accent), path({
+		d: "M226 180h26m-9-9 9 9-9 9",
+		fill: "none",
+		stroke: white,
+		"stroke-width": "3.5",
+		"stroke-linecap": "round",
+		"stroke-linejoin": "round"
+	})));
+}
+/** Step 3: a phone's authenticator app, with a passcode for Duo. */
+function phoneArt() {
+	const account = (y, fill, avatar, code, current) => [
+		box(170, y, 140, 74, 14, fill),
+		box(182, y + 12, 22, 22, 11, avatar),
+		current ? svgText({
+			x: 212,
+			y: y + 28,
+			"font-size": "13",
+			"font-weight": "600",
+			fill: ink
+		}, "Duo") : box(212, y + 15, 56, 7, 3.5, gray),
+		box(212, y + (current ? 36 : 27), 44, 6, 3, line),
+		svgText({
+			x: 182,
+			y: y + 62,
+			"font-size": current ? "24" : "20",
+			"font-weight": "700",
+			"letter-spacing": "1.5",
+			fill: current ? accent : gray
+		}, code)
+	];
+	return div({ class: "how-visual how-visual-phone" }, canvas(box(150, 32, 188, 372, 34, shadow, { opacity: "0.1" }), box(146, 20, 188, 372, 34, ink), box(156, 30, 168, 352, 26, white), box(212, 40, 56, 10, 5, ink), box(170, 66, 64, 10, 5, ink), account(92, soft, accent, "284 913", true), account(178, pale, gray, "105 772", false), account(264, pale, line, "630 418", false)));
+}
+/** Roughly how each AI's start page looks: its background, greeting and message box. */
+var chatLooks = {
+	chatgpt: {
+		page: white,
+		greeting: "What can I help with?",
+		greetingFill: "#0d0d0d",
+		greetingSize: "15",
+		serif: false,
+		box: white,
+		boxStroke: "#e3e3e3",
+		placeholder: "Ask anything",
+		send: "#0d0d0d"
+	},
+	claude: {
+		page: "#f5f4ee",
+		greeting: "How can I help you today?",
+		greetingFill: "#3d3929",
+		greetingSize: "15",
+		serif: true,
+		box: white,
+		boxStroke: "#e5e2d6",
+		placeholder: "Message Claude",
+		send: "#c6613f"
+	},
+	gemini: {
+		page: white,
+		greeting: "Hello there",
+		greetingFill: "#4c7bea",
+		greetingSize: "19",
+		serif: false,
+		box: "#f0f4f9",
+		boxStroke: "#f0f4f9",
+		placeholder: "Ask Gemini",
+		send: "#5f6368"
+	},
+	other: {
+		page: "#f8fafc",
+		greeting: "",
+		greetingFill: ink,
+		greetingSize: "15",
+		serif: false,
+		box: white,
+		boxStroke: line,
+		placeholder: "Message your AI",
+		send: ink
+	}
+};
+/** A file name short enough for the drawings, keeping its start and `.html`. */
+var shortName = (file) => file.length > 36 ? `${file.slice(0, 30)}…${file.slice(-5)}` : file;
+var round = {
+	fill: "none",
+	"stroke-linecap": "round",
+	"stroke-linejoin": "round"
+};
+/** A document with an accent stripe. */
+var fileIcon = (x, y, width, height) => [box(x, y, width, height, 2, white, {
+	stroke: gray,
+	"stroke-width": "1.2"
+}), box(x + 2, y + height / 2 - 1, width - 4, 3, 1, accent)];
+/** A file's name, beside its icon. */
+var fileLabel = (name, x, y) => svgText({
+	x,
+	y,
+	"font-size": "9",
+	"font-weight": "500",
+	fill: ink
+}, name);
+/** The pointer, its tip at `x`, `y`. */
+var pointer = (x, y) => path({
+	d: `M${x} ${y}v17l4.6-4.2 3.4 7.6 3.1-1.4-3.4-7.4 6.2-.2z`,
+	fill: ink,
+	stroke: white,
+	"stroke-width": "1",
+	"stroke-linejoin": "round"
+});
+/** A dialog's drawing: decorative, since the text beside it says the same. */
+var dialogCanvas = (...children) => div({ class: "dialog-visual" }, svg({
+	class: "dialog-art",
+	viewBox: "0 0 360 280",
+	"aria-hidden": "true"
+}, children));
+/** A browser window over a page of color `page`, its Downloads button highlighted. */
+function browserWindow(page) {
+	return [
+		box(10, 22, 340, 252, 14, shadow, { opacity: "0.1" }),
+		box(10, 14, 340, 252, 14, page, { stroke: "#dbe3ed" }),
+		box(10, 14, 340, 40, 14, pale),
+		box(10, 40, 340, 14, 0, pale),
+		box(10, 54, 340, 1, 0, faint),
+		box(24, 30, 9, 9, 4.5, "#f87171"),
+		box(38, 30, 9, 9, 4.5, "#fbbf24"),
+		box(52, 30, 9, 9, 4.5, "#34d399"),
+		box(74, 25, 170, 18, 9, white),
+		box(258, 28, 12, 12, 3, line),
+		box(280, 24, 26, 20, 6, "#dbe7fb"),
+		path({
+			d: "M293 28v8m-4-3.5 4 4 4-4M287.5 40h11",
+			stroke: accent,
+			"stroke-width": "1.8",
+			...round
+		}),
+		box(318, 28, 12, 12, 3, line)
+	];
+}
+/** The browser's Downloads panel, under its button, with the file in its list. */
+function downloadsPanel(name) {
+	return [
+		box(118, 58, 218, 66, 10, shadow, { opacity: "0.12" }),
+		box(118, 52, 218, 66, 10, white, {
+			stroke: faint,
+			"stroke-width": "1.5"
+		}),
+		svgText({
+			x: 132,
+			y: 71,
+			"font-size": "11",
+			"font-weight": "600",
+			fill: ink
+		}, "Downloads"),
+		box(126, 80, 202, 30, 7, soft),
+		fileIcon(134, 86, 13, 17),
+		fileLabel(name, 154, 99)
+	];
+}
+/**
+* The Download step's drawing: a click on the page's download link, and the
+* browser's Downloads panel popping up under its button with the file. Unless
+* motion is reduced, the panel pops up again and again.
+*/
+function downloadArt(file) {
+	return dialogCanvas(browserWindow("#f8fafc"), box(36, 132, 200, 116, 12, shadow, { opacity: "0.08" }), box(36, 126, 200, 116, 12, white, {
+		stroke: faint,
+		"stroke-width": "1.5"
+	}), box(52, 144, 90, 8, 4, gray), box(52, 160, 120, 10, 5, ink), box(52, 194, 92, 9, 4.5, accent), box(52, 207, 92, 2, 1, accent), box(150, 194, 50, 9, 4.5, gray), box(52, 222, 130, 7, 3.5, line), pointer(118, 199), path({
+		d: "M206 196C232 186 244 160 238 128",
+		stroke: accent,
+		"stroke-width": "1.8",
+		"stroke-dasharray": "4 4",
+		...round
+	}), path({
+		d: "M235.3 135.5L238 128L243.2 134.1",
+		stroke: accent,
+		"stroke-width": "1.8",
+		...round
+	}), g({ class: "download-ring" }, box(275, 19, 36, 30, 9, "none", {
+		stroke: accent,
+		"stroke-width": "2"
+	})), g({ class: "download-pop" }, downloadsPanel(shortName(file))));
+}
+/**
+* The Copy prompt step's drawing: a click on the copy button under the prompt,
+* and the prompt on a clipboard, checked. Unless motion is reduced, the
+* clipboard fills and empties again and again.
+*/
+function copyArt() {
+	return dialogCanvas(box(24, 48, 220, 200, 14, shadow, { opacity: "0.08" }), box(24, 40, 220, 200, 14, white, {
+		stroke: faint,
+		"stroke-width": "1.5"
+	}), box(40, 58, 80, 7, 3.5, gray), box(40, 74, 188, 96, 8, pale, {
+		stroke: faint,
+		"stroke-width": "1.5"
+	}), box(52, 88, 160, 5, 2.5, line), box(52, 100, 150, 5, 2.5, line), box(52, 112, 164, 5, 2.5, line), box(52, 124, 120, 5, 2.5, line), box(52, 140, 156, 5, 2.5, line), box(52, 152, 100, 5, 2.5, line), box(40, 184, 150, 30, 8, accent), box(50, 191, 10, 15, 2, "none", {
+		stroke: white,
+		"stroke-width": "1.4"
+	}), box(52.5, 189, 5, 4, 1.5, white), box(66, 196, 110, 6, 3, white), pointer(150, 196), path({
+		d: "M194 196C214 196 230 186 246 176",
+		stroke: accent,
+		"stroke-width": "1.8",
+		"stroke-dasharray": "4 4",
+		...round
+	}), path({
+		d: "M238 176.3L246 176L242.3 183.1",
+		stroke: accent,
+		"stroke-width": "1.8",
+		...round
+	}), box(252, 104, 92, 130, 12, shadow, { opacity: "0.1" }), box(248, 96, 92, 130, 12, white, {
+		stroke: line,
+		"stroke-width": "1.5"
+	}), box(274, 86, 40, 20, 6, gray), g({ class: "copy-paper" }, box(262, 124, 64, 5, 2.5, line), box(262, 136, 56, 5, 2.5, line), box(262, 148, 62, 5, 2.5, line), box(262, 160, 44, 5, 2.5, line), box(303, 197, 28, 28, 14, "#16a34a"), path({
+		d: "M311 211l4.5 4.5 8-9",
+		stroke: white,
+		"stroke-width": "2.2",
+		...round
+	})));
+}
+/**
+* The Verify step's drawing: a browser with its Downloads panel open over
+* `ai`'s start page, and `file` dragged from the panel into the message box.
+* Unless motion is reduced, the file moves along the dashed path and drops in.
+*/
+function dragArt(file, ai) {
+	const look = chatLooks[ai];
+	const name = shortName(file);
+	return dialogCanvas(browserWindow(look.page), look.greeting ? svgText({
+		x: 180,
+		y: 146,
+		"text-anchor": "middle",
+		"font-size": look.greetingSize,
+		"font-weight": look.serif ? "400" : "500",
+		"font-family": look.serif ? "Georgia, 'Times New Roman', serif" : "inherit",
+		fill: look.greetingFill
+	}, look.greeting) : box(120, 136, 120, 12, 6, faint), box(30, 170, 300, 70, 18, look.box, {
+		stroke: look.boxStroke,
+		"stroke-width": "1.5"
+	}), svgText({
+		x: 48,
+		y: 228,
+		"font-size": "11",
+		fill: "#8f8f8f"
+	}, look.placeholder), box(298, 210, 24, 24, ai === "claude" ? 7 : 12, look.send), path({
+		d: "M310 228v-11m-4.5 4.5 4.5-4.5 4.5 4.5",
+		stroke: white,
+		"stroke-width": "1.8",
+		...round
+	}), box(24, 164, 312, 82, 22, "none", {
+		stroke: accent,
+		"stroke-width": "1.5",
+		"stroke-dasharray": "6 5"
+	}), g({ class: "drop-file" }, box(44, 178, 206, 22, 7, soft), fileIcon(51, 182, 10, 14), fileLabel(name, 67, 193)), downloadsPanel(name), path({
+		d: "M206 120C200 142 152 148 134 164",
+		stroke: accent,
+		"stroke-width": "1.8",
+		"stroke-dasharray": "4 4",
+		...round
+	}), path({
+		d: "M141.8 162.4L134 164L136.5 156.4",
+		stroke: accent,
+		"stroke-width": "1.8",
+		...round
+	}), g({ class: "drag-file" }, box(2, 4, 206, 26, 8, shadow, { opacity: "0.12" }), box(0, 0, 206, 26, 8, white, {
+		stroke: accent,
+		"stroke-width": "1.5"
+	}), fileIcon(8, 5, 11, 15), fileLabel(name, 26, 17), pointer(190, 12)));
+}
+/**
+* The Continue step's drawing: a double click on the file in the Downloads
+* panel, which opens it in a new window at its first step. Unless motion is
+* reduced, the clicks ripple and the window opens again and again.
+*/
+function openArt(file) {
+	return dialogCanvas(browserWindow("#f8fafc"), box(30, 78, 70, 8, 4, faint), box(30, 94, 52, 8, 4, faint), downloadsPanel(shortName(file)), g({ class: "click-ring" }, box(229, 85, 26, 26, 13, "none", {
+		stroke: accent,
+		"stroke-width": "2"
+	})), g({ class: "click-ring click-ring-second" }, box(223, 79, 38, 38, 19, "none", {
+		stroke: accent,
+		"stroke-width": "1.5"
+	})), pointer(242, 96), g({ class: "open-window" }, box(30, 136, 208, 134, 12, shadow, { opacity: "0.14" }), box(26, 128, 208, 134, 12, white, {
+		stroke: "#dbe3ed",
+		"stroke-width": "1.5"
+	}), box(26, 128, 208, 20, 12, pale), box(26, 140, 208, 8, 0, pale), box(36, 135, 7, 7, 3.5, "#f87171"), box(47, 135, 7, 7, 3.5, "#fbbf24"), box(58, 135, 7, 7, 3.5, "#34d399"), svgText({
+		x: 42,
+		y: 168,
+		"font-size": "12",
+		"font-weight": "700",
+		fill: accent
+	}, "unduo."), box(46, 181, 96, 1.5, .75, line), box(41, 177, 10, 10, 5, accent), box(65, 177, 10, 10, 5, line), box(89, 177, 10, 10, 5, line), box(113, 177, 10, 10, 5, line), box(137, 177, 10, 10, 5, line), box(42, 196, 176, 56, 8, white, {
+		stroke: faint,
+		"stroke-width": "1.5"
+	}), box(54, 207, 104, 8, 4, ink), box(54, 221, 140, 5, 2.5, line), box(54, 233, 88, 12, 4, accent)));
+}
+/** Each screenshot's blob: URL, by its `data-image-src`. */
+var images = new Map();
+/**
+* Show an AI reply's screenshot: a blob: URL of the file at the image's
+* `data-image-src`, which `fetch` returns only if its SHA-256 matches
+* `data-image-integrity`. An image with no `data-image-src` already holds its picture.
+*/
+function showScreenshot(picture) {
+	const { imageSrc: url, imageIntegrity: integrity = "" } = picture.dataset;
+	if (!url) return;
+	if (!images.has(url)) images.set(url, fetch(url, {
+		integrity,
+		credentials: "omit"
+	}).then((response) => response.ok ? response.blob() : Promise.reject(new Error(url))).then((blob) => URL.createObjectURL(blob)));
+	images.get(url).then((source) => picture.src = source, () => {});
+}
+/** A copy of a reply's screenshot from the page's `#ai-reply-images` template. */
+function screenshotOf(id) {
+	const picture = (document.querySelector("#ai-reply-images")?.content.querySelector(`[data-reply="${id}"]`))?.cloneNode();
+	if (picture) showScreenshot(picture);
+	return picture;
+}
+var closeIcon = () => svg({
+	width: "14",
+	height: "14",
+	viewBox: "0 0 14 14",
+	"aria-hidden": "true"
+}, path({
+	d: "M1 1l12 12M13 1L1 13",
+	stroke: "currentColor",
+	"stroke-width": "1.4"
+}));
+/** A chevron for the carousel's arrows, pointing left or right as `d` draws it. */
+var chevronIcon = (className, d) => svg({
+	class: className,
+	viewBox: "0 0 20 20",
+	"aria-hidden": "true"
+}, path({
+	d,
+	fill: "none",
+	stroke: "currentColor",
+	"stroke-width": "1.6",
+	"stroke-linecap": "round",
+	"stroke-linejoin": "round"
+}));
+var checkIcon = () => svg({
+	class: "reply-verdict-icon",
+	viewBox: "0 0 16 16",
+	"aria-hidden": "true"
+}, path({
+	d: "M3.5 8.5l3 3 6-7",
+	fill: "none",
+	stroke: "currentColor",
+	"stroke-width": "1.8",
+	"stroke-linecap": "round",
+	"stroke-linejoin": "round"
+}));
+/** Text with its `**bold**` phrases in bold. */
+var withBold = (text) => text.split(/\*\*(.+?)\*\*/).map((part, index) => index % 2 ? strong(part) : part);
+/**
+* A reply's Markdown as elements: paragraphs, `###` headings, `-` and `1.`
+* lists, and bold. Its text becomes text nodes, so a reply can't add markup.
+*/
+function replyText(markdown) {
+	return markdown.split(/\n{2,}/).map((block) => {
+		const lines = block.split("\n");
+		const items = (marker) => lines.every((line) => marker.test(line)) && lines.map((line) => li(withBold(line.replace(marker, ""))));
+		const heading = /^#{1,6} (.*)$/.exec(block);
+		if (heading) return h3(withBold(heading[1]));
+		const bullets = items(/^[-*] /);
+		if (bullets) return ul(bullets);
+		const numbered = items(/^\d+\. /);
+		if (numbered) return ol(numbered);
+		return p(withBold(block));
+	});
+}
+/**
+* What ChatGPT, Claude and Gemini said about the setup file saved as Other's, in
+* a carousel that shows one at a time: a screenshot of the conversation that
+* opens larger, and beside it the AI's verdict and its whole reply. Arrows and a button per AI
+* above the card, and a swipe, move between them.
+*/
+function aiTestimonials() {
+	const current = van.state(0);
+	const count = aiReplies.length;
+	/** Show reply `index`, wrapping around at either end. */
+	const show = (index) => current.val = (index + count) % count;
+	const enlarged = div({ class: "viewer-image" });
+	const viewer = dialog({
+		id: "reply-viewer",
+		class: "dialog viewer",
+		onclick: (event) => event.target === viewer && viewer.close()
+	}, button({
+		type: "button",
+		class: "uk-modal-close-default uk-close",
+		"aria-label": "Close",
+		onclick: () => viewer.close()
+	}, closeIcon()), enlarged);
+	const enlarge = (reply, picture) => {
+		const copy = picture.cloneNode();
+		showScreenshot(copy);
+		enlarged.replaceChildren(copy);
+		viewer.setAttribute("aria-label", `${reply.name}'s reply`);
+		viewer.showModal();
+	};
+	const card = (reply, index) => {
+		const picture = screenshotOf(reply.id);
+		return div({
+			class: "reply-card",
+			role: "group",
+			"aria-roledescription": "slide",
+			"aria-label": `${index + 1} of ${count}: ${reply.name}`,
+			inert: () => current.val !== index
+		}, picture && button({
+			type: "button",
+			class: "reply-shot-button",
+			"aria-label": `Enlarge the screenshot of ${reply.name}'s reply`,
+			onclick: () => enlarge(reply, picture)
+		}, picture, span({
+			class: "reply-shot-hint",
+			"aria-hidden": "true"
+		}, "Enlarge")), div({ class: "reply-body" }, div({ class: "reply-head" }, div(p({ class: "reply-name" }, reply.name), p({ class: "reply-model" }, reply.model)), span({ class: "reply-verdict" }, checkIcon(), `Safe: ${reply.verdict}`)), div({ class: "reply-text" }, replyText(reply.reply))));
+	};
+	/** Where a touch began, so a sideways swipe can move to the next or previous reply. */
+	let touch;
+	const carousel = div({
+		class: "reply-carousel",
+		role: "region",
+		"aria-roledescription": "carousel",
+		"aria-label": "What the AIs said"
+	}, div({ class: "reply-controls" }, button({
+		type: "button",
+		class: "reply-arrow",
+		"aria-label": "Previous reply",
+		onclick: () => show(current.val - 1)
+	}, chevronIcon("reply-arrow-icon", "M12 5.5L7.5 10l4.5 4.5")), div({ class: "reply-picker" }, aiReplies.map((reply, index) => button({
+		type: "button",
+		class: "reply-pick",
+		"aria-current": () => String(current.val === index),
+		onclick: () => show(index)
+	}, reply.name))), button({
+		type: "button",
+		class: "reply-arrow",
+		"aria-label": "Next reply",
+		onclick: () => show(current.val + 1)
+	}, chevronIcon("reply-arrow-icon", "M8 5.5l4.5 4.5L8 14.5"))), div({
+		class: "reply-viewport",
+		ontouchstart: (event) => {
+			const { clientX: x, clientY: y } = event.touches[0];
+			touch = {
+				x,
+				y
+			};
+		},
+		ontouchend: (event) => {
+			const { clientX: x, clientY: y } = event.changedTouches[0];
+			const dx = x - (touch?.x ?? x);
+			if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(y - (touch?.y ?? y))) show(current.val + (dx < 0 ? 1 : -1));
+			touch = void 0;
+		}
+	}, div({
+		class: "reply-track",
+		"aria-live": "polite",
+		"data-slide": () => String(current.val)
+	}, aiReplies.map(card))));
+	return section({
+		class: "landing-section",
+		"aria-labelledby": "ai-replies-title"
+	}, div({ class: "section-intro" }, h2({
+		class: "section-title",
+		id: "ai-replies-title"
+	}, "Fully safe, but don't take our word for it."), p({ class: "section-lead" }, "You can audit UnDuo with all the major AIs: ChatGPT, Claude, and Gemini."), p({ class: "section-lead" }, "All three classify it as fully safe.")), carousel, viewer);
+}
+/** Under the AI replies, for anyone who doubts them: a button that reads as a link. */
+function checkYourself(check) {
+	return section({ class: "landing-check" }, p("Think the screenshots might be fake? You can ", button({
+		type: "button",
+		class: "check-link",
+		onclick: check
+	}, "check for yourself.")));
+}
+/** What each step involves, under its line, and its illustration. */
+var stepDetails = [
+	{
+		art: portalArt,
+		text: "Your UnDuo file walks you through your school's Duo device portal, where you add a new device. Duo then shows a QR code meant for its own app."
+	},
+	{
+		art: convertArt,
+		text: "Paste that QR code into your UnDuo file. It activates the new device with Duo straight from your browser, then turns Duo's reply into a standard 2FA QR code."
+	},
+	{
+		art: phoneArt,
+		text: "Any authenticator app works, such as Google Authenticator, 1Password, 2FAS or Aegis: UnDuo makes time-based codes. They work wherever Duo asks for a passcode."
+	}
+];
+/**
+* The three steps of using UnDuo, stacked: each a card with an illustration on
+* one side and its line and details on the other, the sides alternating.
+*/
+function howItWorks() {
+	return section({
+		class: "landing-section",
+		"aria-labelledby": "how-title"
+	}, div({ class: "section-intro" }, h2({
+		class: "section-title",
+		id: "how-title"
+	}, "How UnDuo Works")), ol({ class: "how-steps" }, steps$1.map((title, index) => li({ class: "how-step" }, stepDetails[index].art(), div({ class: "how-copy" }, p({ class: "how-number" }, `Step ${index + 1}`), h3({ class: "how-title" }, title), p({ class: "how-text" }, stepDetails[index].text))))));
+}
+/**
+* Get Started, at the bottom of the page under a bold question, jumps back up
+* to the search, where every setup starts, focuses it and opens its list.
+*/
+function getStarted(focusSearch) {
+	return section({
+		class: "landing-cta",
+		"aria-labelledby": "cta-title"
+	}, h2({
+		class: "cta-title",
+		id: "cta-title"
+	}, "Ready to replace Duo with a secure 2FA app?"), button({
+		type: "button",
+		class: "uk-button uk-button-primary btn-accent cta-button",
+		onclick: focusSearch
+	}, "Get Started"));
+}
+/**
+* The prompt the home page gives a student to put to an AI with the downloaded
+* file. It lives in the home page's script, which the file doesn't contain, so
+* the file an AI reads doesn't hold the question put to that AI. Nothing here
+* touches the DOM, so scripts can import it through the package's `./server`
+* entry, as `configs/ai-replies` does to ask the AIs the same question.
+*/
+var aiPrompt = [
+	"This file sets up Duo two-factor authentication with my own authenticator app. Read its code and everything it loads, and judge each part by what the code allows it to do.",
+	"Will it keep my Duo activation code and secret key between me, Duo and my authenticator app?",
+	"Answer “Safe: no” only if you can point to how UnDuo's file itself would let them reach anyone else, not services it can't control, such as a clipboard or browser that syncs to the cloud. Start your reply with “Safe: yes” or “Safe: no”, then explain why in a few short sentences for a non-technical reader."
+].join("\n\n");
+/** The Verify step's tabs, ChatGPT first and selected; `Other` has no link. */
+var assistants = [
+	{
+		id: "chatgpt",
+		name: "ChatGPT",
+		href: "https://chatgpt.com/"
+	},
+	{
+		id: "claude",
+		name: "Claude",
+		href: "https://claude.ai/"
+	},
+	{
+		id: "gemini",
+		name: "Gemini",
+		href: "https://gemini.google.com/"
+	},
+	{
+		id: "other",
+		name: "Other"
+	}
+];
+/** The keys that open a new browser window: ⌘N on Apple devices, Ctrl+N elsewhere. */
+var newWindowKeys = () => [kbd({ class: "key" }, /Mac|iPhone|iPad/.test(navigator.platform) ? "⌘" : "Ctrl"), kbd({ class: "key" }, "N")];
+/**
+* Open an AI's link in a window of its own over the right of this one, so
+* these steps stay in view while the file is dragged across. Modified clicks,
+* and browsers that block the window, follow the link to a new tab as usual.
+*/
+function openWindow(event) {
+	if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+	const link = event.currentTarget;
+	const width = Math.min(760, Math.round(outerWidth / 2));
+	const place = `width=${width},height=${outerHeight},left=${screenX + outerWidth - width},top=${screenY}`;
+	const opened = window.open(link.href, "unduo-ai", `popup,${place}`);
+	if (!opened) return;
+	opened.opener = null;
+	event.preventDefault();
+}
+/** An arrow out of a box: the link opens in a new window. */
+var newTabIcon = () => svg({
+	class: "button-icon",
+	viewBox: "0 0 16 16",
+	"aria-hidden": "true"
+}, path({
+	d: "M9.5 2.5h4v4M13.5 2.5 7.5 8.5M11.5 9.5v3a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3",
+	fill: "none",
+	stroke: "currentColor",
+	"stroke-width": "1.5",
+	"stroke-linecap": "round",
+	"stroke-linejoin": "round"
+}));
+/**
+* A file's name in a sentence, as a badge with a document icon so it reads as
+* a file. It never breaks across lines.
+*/
+var fileBadge = (name) => span({ class: "file-badge" }, svg({
+	class: "file-badge-icon",
+	viewBox: "0 0 12 14",
+	"aria-hidden": "true"
+}, path({
+	d: "M2 .75h5.25L10.25 3.75v8.5a1 1 0 0 1-1 1h-7.25a1 1 0 0 1-1-1V1.75a1 1 0 0 1 1-1ZM7 .75v3.25h3.25",
+	fill: "none",
+	stroke: "currentColor",
+	"stroke-width": "1.2",
+	"stroke-linejoin": "round"
+})), name);
+/** The name a browser saves an institution's file under: `UnDuo - <name>.html`, or `UnDuo - Other.html`. */
+var fileName = (school) => `UnDuo - ${school.name.replace(/[\\/:*?"<>|]+/g, "-")}.html`;
+/** What makes a link save an institution's file. */
+var fileLink = (school) => ({
+	href: "./files/unduo",
+	download: fileName(school)
+});
+/** Start saving an institution's file, as its link on the first step does. */
+var downloadFile = (school) => a(fileLink(school)).click();
+/**
+* Step 1: the institution's file, which the student downloads but mustn't open
+* yet, because the next step has them audit it first. A drawing beside the
+* text shows where the browser lists the download.
+*/
+function downloadStep(school) {
+	return div({ class: "dialog-layout" }, downloadArt(fileName(school)), div({ class: "dialog-copy" }, p({ class: "home-step-text" }, "Click the link below to download UnDuo's secure webpage, ", fileBadge(fileName(school)), ", ", em("but don't open it yet:")), p({ class: "home-step-text" }, a({
+		class: "home-download",
+		...fileLink(school)
+	}, fileName(school))), p({ class: "home-step-text" }, "Next, we'll show you how to verify it's safe to use.")));
+}
+/** A clipboard: the button copies to it. */
+var clipboardIcon = () => svg({
+	class: "button-icon",
+	viewBox: "0 0 16 16",
+	"aria-hidden": "true"
+}, path({
+	d: "M5.5 2.5h-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1v-10a1 1 0 0 0-1-1h-1M6 1.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5V2a.5.5 0 0 1 .5-.5ZM6 7.5h4M6 10h3",
+	fill: "none",
+	stroke: "currentColor",
+	"stroke-width": "1.3",
+	"stroke-linecap": "round",
+	"stroke-linejoin": "round"
+}));
+/**
+* Step 2: the prompt that asks an AI whether the file is safe, which a button
+* copies to the clipboard for the next step. A drawing beside the text shows
+* the copy.
+*/
+function promptStep(school) {
+	const copied = van.state(false);
+	const copyFailed = van.state(false);
+	const copy = async () => {
+		try {
+			await navigator.clipboard.writeText(aiPrompt);
+			copyFailed.val = false;
+			copied.val = true;
+			setTimeout(() => {
+				copied.val = false;
+			}, 2500);
+		} catch {
+			copyFailed.val = true;
+		}
+	};
+	return div({ class: "dialog-layout" }, copyArt(), div({ class: "dialog-copy" }, p({ class: "home-step-text" }, "The prompt below validates that ", fileBadge(fileName(school)), " is safe to use."), label({
+		for: "ai-question",
+		class: "sr-only"
+	}, "Prompt for the AI"), textarea({
+		class: "uk-textarea field question",
+		id: "ai-question",
+		rows: 3,
+		readOnly: true,
+		spellcheck: false,
+		onfocus: (event) => event.target.select()
+	}, aiPrompt), div({ class: "question-actions" }, button({
+		type: "button",
+		class: "uk-button uk-button-primary btn-accent icon-button",
+		onclick: copy
+	}, clipboardIcon(), van.derive(() => copied.val ? "Copied" : "Copy prompt to clipboard"))), p({
+		class: "copied-note",
+		role: "alert",
+		hidden: () => !copyFailed.val
+	}, "Clipboard access isn't available. Select the prompt above to copy it."), span({
+		class: "sr-only",
+		role: "status"
+	}, van.derive(() => copied.val ? "Prompt copied." : ""))));
+}
+/**
+* Step 3: the downloaded file and the copied prompt go to an AI. Tabs choose
+* the AI, ChatGPT first: a drawing of dragging the file from the browser's
+* downloads into that AI sits beside the text, and a link opens it in a window
+* of its own, with ⌘N (or Ctrl+N) and its address as the fallback.
+*/
+function verifyStep(school) {
+	const selected = van.state(0);
+	const assistant = van.derive(() => assistants[selected.val]);
+	const tabs = assistants.map((choice, index) => button({
+		type: "button",
+		role: "tab",
+		id: `ai-tab-${choice.id}`,
+		class: "ai-tab",
+		"aria-controls": "ai-panel",
+		"aria-selected": () => String(selected.val === index),
+		tabindex: () => selected.val === index ? "0" : "-1",
+		onclick: () => selected.val = index,
+		onkeydown: (event) => {
+			const last = assistants.length - 1;
+			const next = {
+				ArrowLeft: index ? index - 1 : last,
+				ArrowRight: index === last ? 0 : index + 1,
+				Home: 0,
+				End: last
+			}[event.key];
+			if (next === void 0) return;
+			event.preventDefault();
+			selected.val = next;
+			tabs[next].focus();
+		}
+	}, choice.name));
+	return div(div({
+		class: "ai-tabs",
+		role: "tablist",
+		"aria-label": "Your AI"
+	}, tabs), div({
+		id: "ai-panel",
+		class: "dialog-layout",
+		role: "tabpanel",
+		"aria-labelledby": () => `ai-tab-${assistant.val.id}`
+	}, () => dragArt(fileName(school), assistant.val.id), () => {
+		const choice = assistant.val;
+		const file = fileBadge(fileName(school));
+		if (!choice.href) return div({ class: "dialog-copy" }, p({ class: "home-step-text" }, "Open your favorite AI in a new window: press ", newWindowKeys(), " and type its address into the address bar."), p({ class: "home-step-text" }, "Then press your browser's download button, drag ", file, " into it and paste in the prompt you copied."));
+		return div({ class: "dialog-copy" }, p({ class: "home-step-text" }, `Open ${choice.name} in a new window, press your browser's download button, then drag `, file, ` into ${choice.name} and paste in the prompt you copied.`), div({ class: "question-actions" }, a({
+			class: "uk-button uk-button-default btn icon-button",
+			href: choice.href,
+			target: "_blank",
+			rel: "noopener noreferrer",
+			onclick: openWindow
+		}, `Open ${choice.name}`, newTabIcon(), span({ class: "sr-only" }, " (opens in a new window)"))), p({ class: "fallback-note" }, "If that button doesn't work, press ", newWindowKeys(), " to open a new window and type ", em(new URL(choice.href).host), " into the address bar."));
+	}));
+}
+/**
+* Step 4: open the file, which takes over from here with its own steps, and
+* what to take away. A drawing beside the text shows the double click in the
+* browser's downloads.
+*/
+function continueStep(school) {
+	return div({ class: "dialog-layout" }, openArt(fileName(school)), div({ class: "dialog-copy" }, p({ class: "home-step-text" }, "Open your Downloads and double click the ", fileBadge(fileName(school)), " file to open UnDuo's secure webpage."), p({ class: "home-step-text" }, `Follow the webpage's instructions to set up a new 2FA app for ${school === otherInstitution ? "your organization" : school.name}.`), p({ class: "home-step-text stay-safe" }, em(strong("Remember:"), " Never trust any website with your sensitive school login credentials without a way for you to verify it's 100% safe. Stay safe out there!"))));
+}
+/** The dialog's steps once an institution is chosen. `id` names a step in the URL. */
+var steps = [
+	{
+		id: "download",
+		title: "Download"
+	},
+	{
+		id: "prompt",
+		title: "Copy prompt"
+	},
+	{
+		id: "verify",
+		title: "Verify"
+	},
+	{
+		id: "continue",
+		title: "Continue"
+	}
+];
+/** Steps that earlier versions of the page named in links, and where they lead now. */
+var renamed = {
+	university: "download",
+	overview: "download",
+	check: "verify",
+	open: "continue",
+	safe: "continue"
+};
+/**
+* What the URL names: `?university=` holds the institution, whose dialog is open,
+* and `#step=` the dialog's step, the first when it names none. Without a
+* published institution the dialog is closed.
+*/
+function fromUrl() {
+	const school = findUniversity(new URLSearchParams(window.location.search).get("university") ?? void 0);
+	const named = new URLSearchParams(window.location.hash.slice(1)).get("step") ?? "";
+	const index = steps.findIndex(({ id }) => id === (renamed[named] ?? named));
+	return {
+		school,
+		current: school && index >= 0 ? index : 0
+	};
+}
+/**
+* Build the home page in its `#root`, a landing page: the name, what UnDuo is
+* for and a searchable dropdown of institutions, filling the first screen; then
+* what ChatGPT, Claude and Gemini said about a file, how UnDuo works, a way back
+* to the search, and a footer with a contact address and the source. Choosing an institution opens a
+* dialog that takes it from downloading its file to opening it, and the file has
+* its own stepper for setup.
+*/
+function startHomePage() {
+	const homeTitle = document.title;
+	const start = fromUrl();
+	const selected = van.state(start.school);
+	const current = van.state(start.current);
+	/** The search field, which takes focus back when the dialog closes. */
+	const focusSearch = () => document.getElementById("university")?.focus();
+	/** Where focus goes when the dialog closes: the search, unless something else opened it. */
+	let focusAfterClose = focusSearch;
+	/**
+	* Jump the search to the middle of the screen at once, without the page's
+	* smooth scrolling, then focus it and open its list, as a click on it does.
+	*/
+	const toSearch = () => {
+		const field = document.getElementById("university");
+		field?.scrollIntoView({
+			block: "center",
+			behavior: "instant"
+		});
+		field?.focus({ preventScroll: true });
+		field?.click();
+	};
+	/** After the step's elements update, as the setup file does. */
+	const focusStep = () => setTimeout(() => document.getElementById("step-title")?.focus());
+	const showUrl = () => {
+		const { school, current: step } = fromUrl();
+		selected.val = school;
+		current.val = step;
+		document.title = !school ? homeTitle : school === otherInstitution ? "Download UnDuo" : `Download UnDuo for ${school.name}`;
+		if (school && !homeDialog.open) {
+			homeDialog.showModal();
+			focusStep();
+		} else if (!school && homeDialog.open) homeDialog.close();
+	};
+	/** A new address: an institution's dialog at a step, or the page with the dialog closed. */
+	const navigate = (address) => {
+		window.history.pushState(null, "", address);
+		showUrl();
+	};
+	const goTo = (index, school = selected.val) => {
+		if (!school) return;
+		navigate(`?university=${school.id}#step=${steps[index].id}`);
+		focusStep();
+	};
+	/** Choosing an institution opens its dialog at the download. */
+	const choose = (school) => goTo(0, school);
+	/**
+	* "Check for yourself" saves Other's file at once, so its dialog opens on the
+	* step after the download. Closing it leaves the page where it was, far below the search.
+	*/
+	const checkForYourself = ({ currentTarget }) => {
+		focusAfterClose = () => currentTarget.focus({ preventScroll: true });
+		downloadFile(otherInstitution);
+		goTo(1, otherInstitution);
+	};
+	const homeDialog = dialog({
+		id: "home-dialog",
+		class: "dialog",
+		"data-step": () => steps[current.val].id,
+		"aria-labelledby": "step-title",
+		onclose: () => {
+			if (fromUrl().school) navigate(window.location.pathname);
+			focusAfterClose();
+			focusAfterClose = focusSearch;
+		}
+	}, button({
+		type: "button",
+		class: "uk-modal-close-default uk-close",
+		"aria-label": "Close",
+		onclick: () => homeDialog.close()
+	}, svg({
+		width: "14",
+		height: "14",
+		viewBox: "0 0 14 14",
+		"aria-hidden": "true"
+	}, path({
+		d: "M1 1l12 12M13 1L1 13",
+		stroke: "currentColor",
+		"stroke-width": "1.4"
+	}))), p({ class: "dialog-school" }, () => selected.val?.name ?? ""), h2({
+		class: "dialog-title step-title",
+		id: "step-title",
+		tabindex: "-1"
+	}, van.derive(() => steps[current.val].title)), () => {
+		const school = selected.val;
+		if (!school) return div();
+		return [
+			downloadStep,
+			promptStep,
+			verifyStep,
+			continueStep
+		][current.val](school);
+	}, div({ class: "step-nav" }, button({
+		type: "button",
+		class: "uk-button uk-button-text btn",
+		hidden: () => current.val === 0,
+		onclick: () => goTo(current.val - 1)
+	}, "Back"), button({
+		type: "button",
+		class: () => current.val <= 1 ? "uk-button uk-button-default btn at-end" : "uk-button uk-button-primary btn-accent at-end",
+		onclick: () => current.val === steps.length - 1 ? homeDialog.close() : goTo(current.val + 1)
+	}, van.derive(() => current.val === steps.length - 1 ? "Done" : "Continue"))));
+	window.addEventListener("popstate", () => {
+		showUrl();
+		focusStep();
+	});
+	van.add(document.getElementById("root"), div({ class: "home-page" }, main({ class: "home-landing" }, section({ class: "home-hero" }, div({ class: "home-center" }, homeHeader(), homeStart(universityPicker(choose)))), aiTestimonials(), checkYourself(checkForYourself), howItWorks(), getStarted(toSearch)), homeFooter(), homeDialog));
+	showUrl();
+}
+startHomePage();
+</script>
+  </body>
+</html>
